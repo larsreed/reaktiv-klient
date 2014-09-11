@@ -1,0 +1,1 @@
+Test-kode for reaktiv programmering - klient med socket.io og Bootstrap GUI.
