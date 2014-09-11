@@ -1,15 +1,9 @@
-var app = require("express")();
+var express = require("express");
+var app = express();
 var http = require("http").Server(app);
 var io = require("socket.io")(http);
-var static = require('node-static');
 
-var file = new static.Server('./html');
-
-require('http').createServer(function (request, response) {
-    request.addListener('end', function () {
-        file.serve(request, response);
-    }).resume();
-}).listen(8080);
+app.use(express.static('./html'));
 
 io.on('connection', function() {
   console.log("Socket.IO connection");

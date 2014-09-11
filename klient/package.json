@@ -4,7 +4,6 @@
   "description": "Socket.io app for kommunikasjon mellom server og klient til fagkveld for reaktiv programmering",
   "dependencies": {
     "express": "^4.9.0",
-    "node-static": "^0.7.4",
     "socket.io": "^1.1.0"
   }
 }
