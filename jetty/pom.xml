@@ -83,11 +83,18 @@
             <version>${jetty.version}</version>
         </dependency>
 
+        <dependency>
+        	<groupId>org.json</groupId>
+        	<artifactId>json</artifactId>
+        	<version>${json.version}</version>
+        </dependency>
+
     </dependencies>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jetty.version>9.2.2.v20140723</jetty.version>
+        <json.version>20140107</json.version>
         <maven-compiler.version>3.1</maven-compiler.version>
     </properties>
 </project>

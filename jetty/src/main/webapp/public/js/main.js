@@ -1,30 +1,45 @@
-var plottebord = (function($){
+(function($){
 
-"use strict";
+  "use strict";
 
-var containers = {};
-var containersChangeListeners = [];
-var connection = new WebSocket("ws://localhost:8080/containers");
+  var form = $("form");
+  var input = form.find('input[name="url"]');
+  var debug = $("#debug");
+  var results = $("#results");
 
-connection.onmessage = function (event) {
-  if (event.data !== 'empty') {
-    connection.send(JSON.stringify(createContainers()));
-  } else {
-    containers = JSON.parse(event.data);
-    containersChangeListeners.forEach(function (listener) {
-      listener();
+  function handleSubmit() {
+    serverConnection.send({
+      url: input.val().trim()
     });
+    results.html("");
+    return false;
   }
-};
 
-function addContainersChangeListener(listener) {
-  containersChangeListeners.push(listener);
-}
+  function handleMessage(message) {
+    debug.html(JSON.stringify(message));
 
-return {
-  createSection: createSection,
-  createSpaces: createSpaces,
-  addContainersChangeListener: addContainersChangeListener
-};
+    var images = message.images;
+    var i = images.length;
+    var toInsert = "";
+    for (;i--;) {
+      toInsert = toInsert + '<a href="#" class="list-group-item"><img src="'
+        + images[i]
+        + '"><p class="list-group-item-text">'
+        + images[i]
+        + '</p></a>';
+    }
+    if (toInsert.length > 0) {
+      results.prepend(toInsert);
+    }
+  }
+
+  function toggleShowClass() {
+    $(this).toggleClass("show");
+  }
+
+  results.delegate("a.list-group-item", "click", toggleShowClass);
+
+  form.submit(handleSubmit);
+  serverConnection.setMessageHandler(handleMessage);
 
 })(jQuery);

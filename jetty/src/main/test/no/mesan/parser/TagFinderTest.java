@@ -31,4 +31,13 @@ public class TagFinderTest {
         tags = tagFinder.getTags();
         Assert.assertEquals("<img src=\"p.jpg\"/>", tags.get(0));
     }
+
+    @Test
+    public void shouldGetCorrectAttributes() {
+        tagFinder.findTagsInHTML("a", HTML);
+        final List<String> hrefs = tagFinder.getAttributeInTags("href");
+        Assert.assertEquals(2, hrefs.size());
+        Assert.assertEquals("/x.html", hrefs.get(0));
+        Assert.assertEquals("/y.html", hrefs.get(1));
+    }
 }
