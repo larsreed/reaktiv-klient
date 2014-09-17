@@ -6,20 +6,30 @@
   var input = form.find('input[name="url"]');
   var debug = $("#debug");
   var results = $("#results");
+  var stopbutton = $("#stopbutton");
   var imagecount = $("#imagecount");
 
   function handleSubmit() {
     serverConnection.send({
+      action: "parse",
       url: input.val().trim()
     });
     results.html("");
+    stopbutton.show();
     return false;
   }
 
-  function handleMessage(message) {
-    debug.html(JSON.stringify(message));
+  function handleStop() {
+    serverConnection.send({
+      action: "stop"
+    });
+    return false;
+  }
 
-    var images = message.images;
+  function addImages(images) {
+    if (!images && typeof images !== "object") {
+      return;
+    }
     var i = images.length;
     var toInsert = "";
     for (;i--;) {
@@ -36,6 +46,22 @@
     }
   }
 
+  function handleMessage(message) {
+    debug.html(JSON.stringify(message));
+
+    var type = message.type;
+    if (typeof type !== "string") {
+      return;
+    }
+
+    if (type === "images") {
+      addImages(message.images);
+    }
+    else if (type === "stopped") {
+      stopbutton.hide();
+    }
+  }
+
   function toggleShowClass() {
     $(this).toggleClass("show");
   }
@@ -43,6 +69,8 @@
   results.delegate("a.list-group-item", "click", toggleShowClass);
 
   form.submit(handleSubmit);
+  stopbutton.click(handleStop);
+
   serverConnection.setMessageHandler(handleMessage);
 
 })(jQuery);

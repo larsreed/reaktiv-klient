@@ -21,13 +21,19 @@ public class PageParser {
     }
 
     public void parseURL(final String url) {
-        // TODO: Use URL, parse and send list of image URLs
+        // TODO: Use URL to get page, use TagFinder to find the images and send list of image URLs
 
         // Debug:
         final List<String> images = new ArrayList<>();
         images.add("http://messier45.com/img/halebopp.jpg");
         images.add("http://messier45.com/img/m31.jpg");
-
         endpoint.sendListOfImages(session, images);
+    }
+
+    public void stop() {
+        // TODO: Stop parsing...
+
+        // Send message to frontend that we have stopped.
+        endpoint.sendStopped(session);
     }
 }
