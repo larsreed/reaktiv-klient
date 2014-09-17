@@ -1,3 +1,14 @@
+#debug {
+    display: none;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+.panel-body > .list-group {
+    margin: 0;
+}
 
 .list-group-item img { max-width: 100px; max-height: 100px; }
 
@@ -5,7 +16,7 @@
     position: fixed;
     height: 100%;
     width: 100%;
-    background: rgba(110, 110, 110, 0.9) !important;
+    background: rgba(50, 50, 50, 0.95) !important;
     top: 0;
     left: 0;
     border-radius: 0;
@@ -27,6 +38,7 @@
     width:100%;
     display: inline-block;
     vertical-align: middle;
+    border: 20px solid white;
 }
 
 .list-group-item .list-group-item-text {
@@ -37,16 +49,4 @@
 
 .list-group-item.show .list-group-item-text {
     visibility: hidden;
-}
-
-#debug {
-    display: none;
-}
-
-form {
-    margin-bottom: 20px;
-}
-
-.panel-body > .list-group {
-    margin: 0;
 }
