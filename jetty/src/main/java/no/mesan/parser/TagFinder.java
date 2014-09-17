@@ -20,6 +20,12 @@ public class TagFinder {
         tags = new ArrayList<>();
     }
 
+    /**
+     * Finds tags of the given name in the supplied HTML code.
+     * @param tagName Name of tag
+     * @param html HTML content
+     * @return Number of tags found.
+     */
     public int findTagsInHTML(final String tagName, final String html) {
         final String tagStart = STARTTAG + tagName + " ";
         int nextPosition = 0;
@@ -46,10 +52,20 @@ public class TagFinder {
         return count;
     }
 
+    /**
+     * Return all tags found.
+     * @return List of opening tags that where found.
+     */
     public List<String> getTags() {
         return tags;
     }
 
+    /**
+     * Get a list of the content of the given attribute for all found tags. Only found attributes will be added to
+     * the list.
+     * @param attributeName Name of the attribute to add.
+     * @return List of attribute values.
+     */
     public List<String> getAttributeInTags(final String attributeName) {
         final List<String> attributes = new ArrayList<>(tags.size());
         final String pattern = attributeName + "=\"([^\"]+)\"";
