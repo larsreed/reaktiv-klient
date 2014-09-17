@@ -22,7 +22,7 @@
     var i = images.length;
     var toInsert = "";
     for (;i--;) {
-      toInsert = toInsert + '<a href="#" class="list-group-item"><img src="'
+      toInsert = toInsert + '<a href="#" class="list-group-item"><span class="helper"></span><img src="'
         + images[i]
         + '"><p class="list-group-item-text">'
         + images[i]

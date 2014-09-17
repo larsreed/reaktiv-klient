@@ -11,6 +11,13 @@
     border-radius: 0;
     border: none;
     z-index: 1000;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.list-group-item.show .helper {
+    display: inline-block;
+    height: 100%;
     vertical-align: middle;
 }
 
