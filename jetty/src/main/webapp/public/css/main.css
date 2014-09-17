@@ -42,3 +42,11 @@
 #debug {
     display: none;
 }
+
+form {
+    margin-bottom: 20px;
+}
+
+.panel-body > .list-group {
+    margin: 0;
+}
