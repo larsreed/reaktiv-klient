@@ -38,3 +38,7 @@
 .list-group-item.show .list-group-item-text {
     visibility: hidden;
 }
+
+#debug {
+    display: none;
+}

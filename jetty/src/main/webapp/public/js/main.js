@@ -6,6 +6,7 @@
   var input = form.find('input[name="url"]');
   var debug = $("#debug");
   var results = $("#results");
+  var imagecount = $("#imagecount");
 
   function handleSubmit() {
     serverConnection.send({
@@ -30,6 +31,7 @@
     }
     if (toInsert.length > 0) {
       results.prepend(toInsert);
+      imagecount.html(results.find("a.list-group-item").size());
     }
   }
 
